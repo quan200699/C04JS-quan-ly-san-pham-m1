@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #products {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #products td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #products tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #products tr:hover {
+            background-color: #ddd;
+        }
+
+        #products th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>Quản lý sản phẩm</h1>
+<button onclick="showCreateForm()">Thêm mới</button>
+<div id="create-form" style="display: none">
+    <input id="productName" placeholder="Nhập tên sản phẩm" type="text">
+    <button onclick="createProduct()">Add</button>
+</div>
+<table id="products">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Tên sản phẩm</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="tableBody">
+
+    </tbody>
+</table>
+<script>
+    let products = ['IPhone 13 Pro Max', 'IPhone 12 Pro Max', 'IPhone 11', 'Samsung S22 Ultra'];
+
+    //Hiển thị danh sách sản phẩm;
+    function showListProduct() {
+        let tableBody = '';
+        for (let i = 0; i < products.length; i++) {
+            tableBody += `<tr>
+            <td>${i + 1}</td>
+            <td>${products[i]}</td>
+            <td><button>Edit</button></td>
+            <td><button>Delete</button></td>
+        </tr>`
+        }
+        document.getElementById('tableBody').innerHTML = tableBody;
+    }
+
+    function showCreateForm() {
+        document.getElementById('create-form').style.display = 'block';
+    }
+
+    function createProduct() {
+        let name = document.getElementById('productName').value;
+        products.push(name);
+        showListProduct();
+    }
+
+    showListProduct();
+</script>
+</body>
+</html>
